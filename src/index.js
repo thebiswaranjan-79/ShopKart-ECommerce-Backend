@@ -1,6 +1,14 @@
 const express = require("express");
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Server Running at PORT 3000");
+const { PORT } = require("./config/serverConfig");
+const  pingRoutes  = require("./routes/pingRoutes");
+// const { pingController } = require("./controllers/pingController");
+
+// app.get("/api/v1/ping", pingController).;
+
+app.use("/api/v1/ping", pingRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server Running at PORT ${PORT}`);
 });
