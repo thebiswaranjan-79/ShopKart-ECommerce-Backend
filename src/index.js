@@ -1,11 +1,15 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
 const { PORT } = require("./config/serverConfig");
-const  apiRoutes  = require("./routes/apiRouter");
-// const { pingController } = require("./controllers/pingController");
+const apiRoutes = require("./routes/apiRouter");
 
-// app.get("/api/v1/ping", pingController).;
+// Middlewares 
+app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.urlencoded({extended : true}));
+
 
 app.use("/api", apiRoutes);
 

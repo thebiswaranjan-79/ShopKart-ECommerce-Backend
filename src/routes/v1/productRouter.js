@@ -1,8 +1,9 @@
 const express = require("express");
-const pingController = require("../../controllers/pingController");
+const {createProduct} = require("../../controllers/product_controller");
+const {createProductValidator} = require("../../middlewares/product_middlewares")
 
 const router = express.Router();
 
-router.get("/", pingController);
+router.post("/",createProductValidator,createProduct);
 
 module.exports = router;
