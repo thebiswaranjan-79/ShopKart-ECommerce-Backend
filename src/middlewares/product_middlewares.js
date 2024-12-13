@@ -6,52 +6,40 @@ function createProductValidator(req, res, next) {
     return res
       .status(400)
       .json(
-        errorResponse("Title is Not Present", new BadRequest("Missing"))
+        errorResponse("Title is Not Present", new BadRequest("Title"))
       );
   }
 
   if (!req.body.description) {
-    return res.json({
-      success: false,
-      data: {},
-      message: "description Not Present in the incoming Request",
-      error: {
-        message: "Req Body Received without description",
-      },
-    });
+    return res
+      .status(400)
+      .json(
+        errorResponse("Description is Not Present", new BadRequest("Description"))
+      );
   }
 
   if (!req.body.price) {
-    return res.json({
-      success: false,
-      data: {},
-      message: "price Not Present in the incoming Request",
-      error: {
-        message: "Req Body Received without price",
-      },
-    });
+    return res
+    .status(400)
+    .json(
+      errorResponse("Price is Not Present", new BadRequest("Price"))
+    );
   }
 
   if (!req.body.image) {
-    return res.json({
-      success: false,
-      data: {},
-      message: "image Not Present in the incoming Request",
-      error: {
-        message: "Req Body Received without image",
-      },
-    });
+    return res
+      .status(400)
+      .json(
+        errorResponse("Image is Not Present", new BadRequest("Image"))
+      );
   }
 
-  if (!req.body.title) {
-    return res.json({
-      success: false,
-      data: {},
-      message: "Title Not Present in the incoming Request",
-      error: {
-        message: "Req Body Received without Title",
-      },
-    });
+  if (!req.body.category) {
+     return res
+      .status(400)
+      .json(
+        errorResponse("Category is Not Present", new BadRequest("Category"))
+      );
   }
   // If Everything Looks Goog
   next();
