@@ -14,8 +14,12 @@ function createProduct(product) {
 function getProducts() {
   return products;
 }
+function getProductById(id) {
+    return products.filter(product => product.id == id)[0];
+  }
 
 module.exports = {
   createProduct,
-  getProducts
+  getProducts,
+  getProductById
 };

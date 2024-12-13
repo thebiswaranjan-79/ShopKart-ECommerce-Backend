@@ -35,7 +35,24 @@ function getProducts(req, res){
     }
 }
 
+function getProductById(req, res){
+  try {
+     const response = ProductService.getProductById(req.params.id);
+    
+     return res.status(StatusCodes.OK).json({
+      success: true,
+      error: {},
+      message: "Successfully fetch the Product",
+      data: response,
+    });
+
+  } catch (error) {
+    console.log("Something Went Wrong ", error);
+  }
+}
+
 module.exports = {
   createProduct,
-  getProducts
+  getProducts,
+  getProductById
 };
