@@ -1,27 +1,41 @@
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 
+const  ProductService  = require("../services/product_service");
+
 function createProduct(req, res) {
   try {
-    // SOme db Processing
+    // Some db Processing
+
+    const response = ProductService.createProduct(req.body);
 
     return res.status(StatusCodes.CREATED).json({
       success: true,
       error: {},
       message: ReasonPhrases.CREATED + " the Product",
-      data: {
-        id: Math.random() * 20,
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        price: req.body.price,
-        image: req.body.image,
-      },
+      data: response,
     });
   } catch (error) {
     console.log("Something Went Wrong ", error);
   }
 }
 
+function getProducts(req, res){
+    try {
+       const response = ProductService.getProducts();
+      
+       return res.status(StatusCodes.OK).json({
+        success: true,
+        error: {},
+        message: "Successfully fetch the Product",
+        data: response,
+      });
+
+    } catch (error) {
+      console.log("Something Went Wrong ", error);
+    }
+}
+
 module.exports = {
   createProduct,
+  getProducts
 };
