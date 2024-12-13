@@ -1,13 +1,13 @@
+const BadRequest = require("../errors/bad_request_error");
+const errorResponse = require("../utils/error_response");
+
 function createProductValidator(req, res, next) {
   if (!req.body.title) {
-    return res.json({
-      success: false,
-      data: {},
-      message: "Title Not Present in the incoming Request",
-      error: {
-        message: "Req Body Received without Title",
-      },
-    });
+    return res
+      .status(400)
+      .json(
+        errorResponse("Title is Not Present", new BadRequest("Missing"))
+      );
   }
 
   if (!req.body.description) {
@@ -20,7 +20,7 @@ function createProductValidator(req, res, next) {
       },
     });
   }
-  
+
   if (!req.body.price) {
     return res.json({
       success: false,
@@ -31,7 +31,7 @@ function createProductValidator(req, res, next) {
       },
     });
   }
-  
+
   if (!req.body.image) {
     return res.json({
       success: false,
@@ -42,7 +42,7 @@ function createProductValidator(req, res, next) {
       },
     });
   }
-  
+
   if (!req.body.title) {
     return res.json({
       success: false,
@@ -57,4 +57,4 @@ function createProductValidator(req, res, next) {
   next();
 }
 
-module.exports = {createProductValidator};
+module.exports = { createProductValidator };
